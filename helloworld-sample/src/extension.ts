@@ -9,8 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         const inset = vscode.window.createWebviewTextEditorInset(
-            vscode.window.activeTextEditor,
-            vscode.window.activeTextEditor.selection.with({ end: vscode.window.activeTextEditor.selection.end.translate(30) }),
+            vscode.window.activeTextEditor, 0, 30,
             { localResourceRoots: [ rootUrl ] }
             );
         inset.onDidDispose(() => {
@@ -35,7 +34,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 function getHtml(rootUrl: vscode.Uri) {
     const png = rootUrl.with( { scheme: 'vscode-resource', path: path.join(rootUrl.path, './sample.png') }).toString()
-    return `<img src="${png}"/>`
+    const svg = rootUrl.with( { scheme: 'vscode-resource', path: path.join(rootUrl.path, './sample.svg') }).toString()
+    return `<img src="${png}"/><img src="${svg}"/>`
 }
 
 
