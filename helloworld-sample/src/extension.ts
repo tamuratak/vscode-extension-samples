@@ -12,11 +12,32 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
+
+    context.subscriptions.push(
+        vscode.workspace.registerTextDocumentContentProvider(
+            'embed',
+            {
+				provideTextDocumentContent: () => {
+					return '$abc$'
+				}
+			}
+        )
+    )
+	let disposable = vscode.commands.registerCommand('extension.helloWorld', async () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World!');
+		
+		const uri = vscode.Uri.file('/Users/tamura/src/github/vscode-extension-samples/t.tex')
+		await vscode.workspace.openTextDocument(uri)
+		const dummyUri = vscode.Uri.parse('embed:/dummy/dummy.tex')
+		const doc = await vscode.workspace.openTextDocument(dummyUri)
+		await vscode.languages.setTextDocumentLanguage(doc, 'latex')
+		const hovers = await vscode.commands.executeCommand('vscode.executeHoverProvider', uri, new vscode.Position(0, 2))
+		console.log(hovers)
+
+
 	});
 
 	context.subscriptions.push(disposable);

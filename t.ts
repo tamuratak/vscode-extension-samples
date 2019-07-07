@@ -1,0 +1,1 @@
+function abc(s: string) { return 1 + 2 }
