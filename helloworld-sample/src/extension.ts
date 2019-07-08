@@ -1,26 +1,54 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as path from 'path';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "helloworld-sample" is now active!');
+    const rootUrl = vscode.Uri.file(context.extensionPath)
+    const disposable = vscode.commands.registerCommand('extension.helloWorld', async (args, brgs, crgs) => {
+        if (!vscode.window.activeTextEditor) {
+            return;
+        }
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
-	});
-
+        const panel = vscode.window.createWebviewPanel(
+            'catCoding',
+            'Cat Coding',
+            vscode.ViewColumn.Beside,
+            {
+				enableScripts: true,
+				retainContextWhenHidden: true,
+				localResourceRoots: [ rootUrl ]
+            }
+		);
+		const editor = vscode.window.activeTextEditor
+		panel.webview.html = getHtml(rootUrl);
+		setTimeout(() => vscode.window.showTextDocument(editor.document, editor.viewColumn), 500)
+    });
 	context.subscriptions.push(disposable);
 }
+
+function getHtml(rootUrl: vscode.Uri) {
+	const url = rootUrl.with({scheme: 'vscode-resource', path: path.join(rootUrl.path, './t.html')})
+	return `
+<!DOCTYPE html><html><head></head>
+<body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+</iframe>
+<script>
+let iframe = document.getElementById('preview-panel');
+window.onfocus = function() {
+	console.log('window focused!');
+	setTimeout(function() { // doesn't work immediately
+		iframe.contentWindow.focus();
+	}, 100);
+}
+iframe.onload = function() {
+	console.log('iframe focused!');
+	setTimeout(function() { // doesn't work immediately
+		iframe.contentWindow.focus();
+	}, 100);
+}
+</script>
+`
+}
+
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
