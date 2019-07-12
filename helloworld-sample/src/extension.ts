@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
   const rootUrl = vscode.Uri.file(context.extensionPath)
@@ -11,7 +12,9 @@ export function activate(context: vscode.ExtensionContext) {
       'catCoding',
       'Cat Coding',
       { preserveFocus: true, viewColumn: vscode.ViewColumn.Beside },
-      { enableScripts: true }
+      { enableScripts: true, localResourceRoots: [ rootUrl ],
+        portMapping : [{webviewPort: 3000, extensionHostPort: 4000}]
+        }
     );
     panel.webview.html = getHtml();
   });
@@ -20,18 +23,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 function getHtml() {
 	return `
-<!DOCTYPE html><html><head></head>
-<body>
-<script>
-window.onfocus = function() {
-	console.log('window focused!');
-}
-window.addEventListener('keydown', function(evt) {
-	if(evt.keyCode == 70 && evt.target.nodeName != 'INPUT') {
-	  console.log('keyboard F typed!')
-	}
-  })
-</script>
+<!DOCTYPE html><html>
+<img src='http://127.0.0.1:3000/?file=abc' />
 `
 }
 

@@ -1,9 +1,3 @@
 <script>
-window.addEventListener('keydown', function(evt) {
-  // F opens find bar, cause Ctrl-F is handled by vscode
-  if(evt.keyCode == 70 && evt.target.nodeName != 'INPUT') { // ignore F typed in the search box
-    console.log('called ctrl-f!')
-  }
-})
+console.log(document.location.href)
 </script>
-<img src="s.png" />
