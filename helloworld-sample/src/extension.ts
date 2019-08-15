@@ -3,7 +3,7 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
     const rootUrl = vscode.Uri.file(context.extensionPath);
     const disposable = vscode.commands.registerCommand('extension.helloWorld', async () => {
-        const insetArray: Array<[vscode.WebviewEditorInset, vscode.Range]> = []
+        const insetMap = new Map<vscode.WebviewEditorInset, vscode.Range>();
         for (let i = 0; i < 30; i++) {
             const line = 20 * i;
             const editor = vscode.window.activeTextEditor;
@@ -12,13 +12,14 @@ export function activate(context: vscode.ExtensionContext) {
                 return;
             }
             const inset = vscode.window.createWebviewTextEditorInset(
-                editor, line, 6,
+                editor, line, 8,
                 { localResourceRoots: [ rootUrl ] }
             )
             inset.onDidDispose(() => {
+                insetMap.delete(inset);
                 console.log('WEBVIEW disposed...');
             });
-            insetArray.push([inset, insetRange]);
+            insetMap.set(inset, insetRange);
             const range = editor.visibleRanges[0]
             if (!range) {
                 continue;
@@ -31,8 +32,8 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }
 
-        vscode.window.onDidChangeTextEditorVisibleRanges( async (e) => {
-            for (const [inset, insetRange] of insetArray) {
+        const d = vscode.window.onDidChangeTextEditorVisibleRanges( async (e) => {
+            for (const [inset, insetRange] of insetMap) {
                 const range = e.visibleRanges[0]
                 if (!range) {
                     return;
@@ -48,6 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
         })
     });
+
     context.subscriptions.push(disposable);
 }
 

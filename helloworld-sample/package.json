@@ -2,7 +2,7 @@
 	"name": "helloworld-sample",
 	"displayName": "helloworld-sample",
 	"description": "HelloWorld example for VS Code",
-	"version": "0.0.1",
+	"version": "0.0.8",
 	"publisher": "xabafae",
 	"enableProposedApi": true,
 	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-sample",
@@ -36,8 +36,5 @@
 		"tslint": "^5.16.0",
 		"typescript": "^3.5.1"
 	},
-	"dependencies": {
-		"pdfjs-dist": "2.0.943",
-		"webpack": "^4.34.0"
-	}
+	"dependencies": {}
 }
