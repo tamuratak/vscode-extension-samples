@@ -9,13 +9,16 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         const inset = vscode.window.createWebviewTextEditorInset(
-            vscode.window.activeTextEditor, 0, 30,
+            vscode.window.activeTextEditor, 5, 30,
             { localResourceRoots: [ rootUrl ] }
             );
         inset.onDidDispose(() => {
             console.log('WEBVIEW disposed...');
         });
         inset.webview.html = getHtml(rootUrl);
+        setTimeout(() => {
+            inset.updateHeight(3)
+        }, 5000)
 
         /* the following works well.
         const panel = vscode.window.createWebviewPanel(
@@ -33,9 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function getHtml(rootUrl: vscode.Uri) {
-    const png = rootUrl.with( { scheme: 'vscode-resource', path: path.join(rootUrl.path, './sample.png') }).toString()
-    const svg = rootUrl.with( { scheme: 'vscode-resource', path: path.join(rootUrl.path, './sample.svg') }).toString()
-    return `<img src="${png}"/><img src="${svg}"/>`
+    const png = rootUrl.with( { scheme: 'vscode-resource', path: path.join(rootUrl.path, './circle.png') }).toString()
+    return `<img src="${png}"/>`
 }
 
 

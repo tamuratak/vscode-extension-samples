@@ -2,12 +2,13 @@
 	"name": "helloworld-sample",
 	"displayName": "helloworld-sample",
 	"description": "HelloWorld example for VS Code",
+	"license": "MIT",
 	"version": "0.0.1",
 	"publisher": "xabafae",
 	"enableProposedApi": true,
 	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-sample",
 	"engines": {
-		"vscode": "^1.34.0"
+		"vscode": "^1.41.0"
 	},
 	"categories": [
 		"Other"
@@ -31,13 +32,9 @@
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
-		"@types/node": "^8.10.25",
-		"@types/vscode": "^1.34.0",
-		"tslint": "^5.16.0",
-		"typescript": "^3.5.1"
+		"@types/node": "^12",
+		"@types/vscode": "^1.41.0",
+		"typescript": "^3.7.4"
 	},
-	"dependencies": {
-		"pdfjs-dist": "2.0.943",
-		"webpack": "^4.34.0"
-	}
+	"dependencies": {}
 }
