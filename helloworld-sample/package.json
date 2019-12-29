@@ -22,13 +22,20 @@
 			{
 				"command": "extension.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "extension.increaseHeight",
+				"title": "increase inset height"
+			},
+			{
+				"command": "extension.decreaseHeight",
+				"title": "decrease inset height"
 			}
 		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"lint": "tslint -p ./",
 		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
