@@ -5,13 +5,16 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "helloworld-sample" is now active!');
 
 	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-		vscode.window.showInformationMessage('Hello World!');
+		const editor = vscode.window.activeTextEditor
+		if (editor) {
+			console.log(`hello world: ${JSON.stringify(editor.visibleRanges)}`)
+		}
 	});
 
 	context.subscriptions.push(disposable);
 
 	disposable = vscode.window.onDidChangeTextEditorVisibleRanges((e) => {
-		vscode.window.showInformationMessage(`fired: ${path.basename(e.textEditor.document.fileName)}, ${JSON.stringify(e.visibleRanges)}`);
+		console.log(`fired: ${path.basename(e.textEditor.document.fileName)}, ${JSON.stringify(e.visibleRanges)}`);
 	 })
 }
 
