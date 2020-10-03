@@ -6,7 +6,8 @@ import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const provider1 = vscode.languages.registerCompletionItemProvider('plaintext', {
+	console.log('actv')
+	const provider1 = vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'abc' }, {
 
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
 
@@ -47,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	const provider2 = vscode.languages.registerCompletionItemProvider(
-		'plaintext',
+		{ scheme: 'file', language: 'abc' },
 		{
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 

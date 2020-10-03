@@ -10,6 +10,17 @@
 	"bugs": {
 		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
 	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "abc",
+				"extensions": [
+					".abc"
+				],
+				"configuration": "./syntax.json"
+			}
+		]
+	},
 	"engines": {
 		"vscode": "^1.32.0"
 	},
