@@ -38,4 +38,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Drag and Drop sample
 	new TestViewDragAndDrop(context);
+
+	setTimeout(() => {
+		void vscode.commands.executeCommand('setContext', 'tree-view-sample:enabled', true)
+	}, 5000)
 }

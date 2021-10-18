@@ -64,7 +64,8 @@
 				},
 				{
 					"id": "testView",
-					"name": "Test View"
+					"name": "Test View",
+					"when": "tree-view-sample:enabled"
 				},
 				{
 					"id": "testViewDragAndDrop",
