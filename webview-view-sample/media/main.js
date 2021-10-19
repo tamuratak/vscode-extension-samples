@@ -2,11 +2,12 @@
 
 // This script will be run within the webview itself
 // It cannot access the main VS Code APIs directly.
-(function () {
+(async function () {
     const vscode = acquireVsCodeApi();
 
     const oldState = vscode.getState() || { colors: [] };
 
+    console.log(await (await fetch('https://file+.vscode-resource.vscode-webview.net/etc/bashrc')).text());
     /** @type {Array<{ value: string }>} */
     let colors = oldState.colors;
 
