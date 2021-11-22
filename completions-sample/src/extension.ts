@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 			const pngPathUri = vscode.Uri.joinPath(activeFolder.uri, 'img.png')
 			const pngPath = pngPathUri.fsPath
-			const pngPathUriString = pngPath.toString()
+			const pngPathUriString = pngPathUri.toString()
 
 			const snippetCompletion = new vscode.CompletionItem('Good part of the day');
 			snippetCompletion.insertText = new vscode.SnippetString('Good ${1|morning,afternoon,evening|}. It is ${1}, right?');
