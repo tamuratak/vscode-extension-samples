@@ -3,7 +3,6 @@
  *--------------------------------------------------------*/
 
 import * as vscode from 'vscode';
-import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -11,12 +10,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
 
-			const pngPath = path.join(__dirname, '..', 'a.png')
-			const pngPathUriString = vscode.Uri.file(pngPath).toString()
-
+			const activeFolder = vscode.workspace.workspaceFolders?.[0]
+			if (!activeFolder) {
+				return
+			}
+			const pngPathUri = vscode.Uri.joinPath(activeFolder.uri, 'a.png')
+			const pngPathUriString = pngPathUri.toString()
+			console.log(pngPathUriString)
 			const snippetCompletion = new vscode.CompletionItem('Good part of the day');
 			snippetCompletion.insertText = new vscode.SnippetString('Good ${1|morning,afternoon,evening|}. It is ${1}, right?');
-			const md = new vscode.MarkdownString(`1 <img src="${pngPathUriString}"> 2 <img src="${pngPath}"> 3 ![a](${pngPathUriString}) 4 ![a](${pngPath})`);
+			const md = new vscode.MarkdownString(`1 <img src="${pngPathUriString}"> 2 ![a](${pngPathUriString})`);
 			md.supportHtml = true
 			snippetCompletion.documentation = md
 
