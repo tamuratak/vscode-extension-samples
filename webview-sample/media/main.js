@@ -38,4 +38,12 @@
                 break;
         }
     });
+
+    const blob = new Blob(['abc'], { type: 'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const dom = document.createElement('a');
+    dom.href = url;
+    dom.download = 't.txt';
+//    document.body.appendChild(dom);
+    dom.click();
 }());
