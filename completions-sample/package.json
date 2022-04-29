@@ -1,7 +1,7 @@
 {
 	"name": "completions-sample-html-markdown",
 	"displayName": "Completion Item Provider Sample",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"publisher": "vscode-samples-akkdfajs",
 	"private": true,
 	"license": "MIT",
