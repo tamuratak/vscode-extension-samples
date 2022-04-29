@@ -1,8 +1,8 @@
 {
-	"name": "completions-sample",
+	"name": "completions-sample-html-markdown",
 	"displayName": "Completion Item Provider Sample",
 	"version": "0.0.2",
-	"publisher": "vscode-samples",
+	"publisher": "vscode-samples-akkdfajs",
 	"private": true,
 	"license": "MIT",
 	"repository": {
@@ -10,7 +10,7 @@
 		"url": "https://github.com/Microsoft/vscode-extension-samples"
 	},
 	"engines": {
-		"vscode": "^1.32.0"
+		"vscode": "^1.63.0"
 	},
 	"categories": [
 		"Other"
@@ -27,10 +27,10 @@
 	},
 	"devDependencies": {
 		"@types/node": "^12.12.0",
-		"@types/vscode": "^1.32.0",
-		"@typescript-eslint/eslint-plugin": "^5.19.0",
-		"@typescript-eslint/parser": "^5.19.0",
-		"eslint": "^8.13.0",
-		"typescript": "^4.6.3"
+		"@types/vscode": "^1.63.0",
+		"@typescript-eslint/eslint-plugin": "^4.16.0",
+		"@typescript-eslint/parser": "^4.16.0",
+		"eslint": "^7.21.0",
+		"typescript": "^4.4.3"
 	}
 }
