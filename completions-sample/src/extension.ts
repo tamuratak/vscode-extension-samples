@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	const provider = {
 			provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): vscode.CompletionItem[] {
-	
+
 				const additionalEditsCompletion = new vscode.CompletionItem('\\Z\\\\\\\\\\\\{');
 				additionalEditsCompletion.kind = vscode.CompletionItemKind.Issue;
 				additionalEditsCompletion.insertText = '';
