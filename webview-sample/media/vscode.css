@@ -1,13 +1,22 @@
-:root {
-	--container-padding: 20px;
-	--input-padding-vertical: 6px;
-	--input-padding-horizontal: 4px;
-	--input-margin-vertical: 4px;
-	--input-margin-horizontal: 0;
+#contentMain {
+    padding: 0;
+    overflow-y: scroll;
+    mask-image: linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px);
+    mask-size: 100% 20000px;
+    mask-position: left bottom;
+    -webkit-mask-image: linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px);
+    -webkit-mask-size: 100% 20000px;
+    -webkit-mask-position: left bottom;
+    transition: mask-position 0.8s cubic-bezier(.23,.96,.57,.99), -webkit-mask-position 0.8s cubic-bezier(.23,.96,.57,.99);
+}
+
+#contentMain:hover {
+    mask-position: left top;
+    -webkit-mask-position: left top;
 }
 
 body {
-	padding: 0 var(--container-padding);
+	padding: 0;
 	color: var(--vscode-foreground);
 	font-size: var(--vscode-font-size);
 	font-weight: var(--vscode-font-weight);

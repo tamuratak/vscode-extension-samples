@@ -1,6 +1,18 @@
 // This script will be run within the webview itself
 // It cannot access the main VS Code APIs directly.
 
+// Based on https://css-tricks.com/scrollbars-on-hover/
+document.addEventListener('DOMContentLoaded', () => {
+    const contentDiv = document.getElementById('contentMain');
+    if (!contentDiv) {
+        return;
+    }
+    contentDiv.style.height = window.innerHeight + 'px';
+    window.addEventListener('resize', () => {
+        contentDiv.style.height = window.innerHeight + 'px';
+    })
+});
+
 (function () {
     const vscode = acquireVsCodeApi();
 
