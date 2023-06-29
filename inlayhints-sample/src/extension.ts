@@ -27,7 +27,7 @@ export class LtInlayHintsProvider implements vscode.InlayHintsProvider {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "helloworld-sample" is now active!');
+    console.log('Congratulations, your extension "inlayhints-sample" is now active!');
 
     vscode.languages.registerInlayHintsProvider({ language: 'typescript' }, new LtInlayHintsProvider())
 }
