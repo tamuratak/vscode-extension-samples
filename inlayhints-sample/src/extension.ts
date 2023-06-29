@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 export class LtInlayHintsProvider implements vscode.InlayHintsProvider {
     private readonly eventEmitter = new vscode.EventEmitter<void>()
     readonly onDidChangeInlayHints: vscode.Event<void>
-	private count = 1
+	private count = 0
 
     constructor() {
         this.onDidChangeInlayHints = this.eventEmitter.event
