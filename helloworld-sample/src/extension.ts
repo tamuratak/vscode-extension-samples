@@ -12,15 +12,22 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.commands.registerCommand('extension.helloWorld', async () => {
 		const [model] = await vscode.lm.selectChatModels(MODEL_SELECTOR);
 		const messages = [
-			vscode.LanguageModelChatMessage.User(`User
-Completion candidates of the following. Up to three candidates. In JSON format.
+			vscode.LanguageModelChatMessage.User(`
+The command has been defined in the package.json file
+Now provide the implementation of the command with registerCommand
+The commandId parameter must match the command field in package.json
+				`),
+			vscode.LanguageModelChatMessage.User(`
+* Fullfil <Blank> following User Input with a sentence that makes sense.
+* Give in JSON format.
+* Several words.
+* Several cnadidates.
 
 {
-   "candidates": [{item: <candidate>, reason: <string>}]
+   candidates: [{item: <candidate>}]
 }
 
-Display a message box to the user.
-If the config is `)
+UserInput: If the config is set, the view <Blank> `)
 		];
 		const chatResponse = await model.sendRequest(messages, { modelOptions: {"type": "json_object"}});
 		const result = []
