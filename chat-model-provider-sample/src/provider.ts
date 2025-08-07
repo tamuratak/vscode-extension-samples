@@ -1,4 +1,4 @@
-import { CancellationToken, ChatResponseFragment2, LanguageModelChatInformation, LanguageModelChatMessage, LanguageModelChatProvider2, LanguageModelChatRequestHandleOptions, LanguageModelTextPart, Progress, ProviderResult } from "vscode";
+import { CancellationToken, ChatResponseFragment2, LanguageModelChatInformation, LanguageModelChatMessage, LanguageModelChatProvider2, LanguageModelChatRequestHandleOptions, LanguageModelTextPart, LanguageModelToolCallPart, Progress, ProviderResult } from "vscode";
 
 function getChatModelInfo(id: string, name: string): LanguageModelChatInformation {
 	return {
@@ -24,9 +24,11 @@ export class SampleChatModelProvider implements LanguageModelChatProvider2 {
 		];
 	}
 	async provideLanguageModelChatResponse(model: LanguageModelChatInformation, _messages: Array<LanguageModelChatMessage>, _options: LanguageModelChatRequestHandleOptions, progress: Progress<ChatResponseFragment2>, _token: CancellationToken): Promise<void> {
+		await sleep(500);
 		if (model.id === "sample-dog-model") {
 			progress.report({index: 0, part: new LanguageModelTextPart("Woof! This is a dog model response.") });
 		} else if (model.id === "sample-cat-model") {
+			progress.report({index: 0, part: new LanguageModelToolCallPart('idididid', 'abc', { input: "Meow! This is a cat model response." }) });
 			progress.report({index: 0, part: new LanguageModelTextPart("Meow! This is a cat model response.") });
 		} else {
 			progress.report({ index: 0, part: new LanguageModelTextPart("Unknown model.") });
@@ -36,4 +38,8 @@ export class SampleChatModelProvider implements LanguageModelChatProvider2 {
 		return 42;
 	}
 
+}
+
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
