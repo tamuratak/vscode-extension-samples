@@ -103,9 +103,9 @@
 					"type": "object",
 					"properties": {
 						"tabGroup": {
-							"type": "number",
+							"type": "string",
 							"description": "The index of the tab group to check. This is optional- if not specified, the active tab group will be checked.",
-							"default": 0
+							"default": "0"
 						}
 					}
 				}

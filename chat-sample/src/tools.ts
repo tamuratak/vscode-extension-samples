@@ -11,46 +11,13 @@ interface ITabCountParameters {
 }
 
 export class TabCountTool implements vscode.LanguageModelTool<ITabCountParameters> {
-	async invoke(
-		options: vscode.LanguageModelToolInvocationOptions<ITabCountParameters>,
-		_token: vscode.CancellationToken
-	) {
-		const params = options.input;
-		if (typeof params.tabGroup === 'number') {
-			const group = vscode.window.tabGroups.all[Math.max(params.tabGroup - 1, 0)];
-			const nth =
-				params.tabGroup === 1
-					? '1st'
-					: params.tabGroup === 2
-						? '2nd'
-						: params.tabGroup === 3
-							? '3rd'
-							: `${params.tabGroup}th`;
-			return new vscode.LanguageModelToolResult([new vscode.LanguageModelTextPart(`There are ${group.tabs.length} tabs open in the ${nth} tab group.`)]);
-		} else {
-			const group = vscode.window.tabGroups.activeTabGroup;
-			return new vscode.LanguageModelToolResult([new vscode.LanguageModelTextPart(`There are ${group.tabs.length} tabs open.`)]);
-		}
-	}
-
-	async prepareInvocation(
-		options: vscode.LanguageModelToolInvocationPrepareOptions<ITabCountParameters>,
-		_token: vscode.CancellationToken
-	) {
-		const confirmationMessages = {
-			title: 'Count the number of open tabs',
-			message: new vscode.MarkdownString(
-				`Count the number of open tabs?` +
-				(options.input.tabGroup !== undefined
-					? ` in tab group ${options.input.tabGroup}`
-					: '')
-			),
-		};
-
-		return {
-			invocationMessage: 'Counting the number of tabs',
-			confirmationMessages,
-		};
+	async invoke() {
+		return new vscode.LanguageModelToolResult([new vscode.LanguageModelTextPart(`
+aaa bbb ccc ddd eee fff ggg hhh iii jjj
+~~~ts
+const a = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10;
+~~~
+`)]);
 	}
 }
 
