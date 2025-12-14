@@ -1,6 +1,6 @@
 {
 	"name": "chat-sample",
-	"publisher": "vscode-samples",
+	"publisher": "vscode-samples-tamuratak",
 	"displayName": "Copilot Chat Sample",
 	"description": "Sample chat extension, a trusty cat tutor that will can teach you computer science topics.",
 	"repository": {
@@ -9,7 +9,7 @@
 	},
 	"version": "0.1.0",
 	"engines": {
-		"vscode": "^1.100.0"
+		"vscode": "^1.107.0"
 	},
 	"categories": [
 		"AI",
@@ -179,7 +179,8 @@
 		"@eslint/js": "^9.13.0",
 		"@stylistic/eslint-plugin": "^2.9.0",
 		"@types/node": "^22",
-		"@types/vscode": "^1.100.0",
+		"@types/vscode": "^1.107.0",
+		"@vscode/vsce": "3.7.1",
 		"eslint": "^9.13.0",
 		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.39.0"
